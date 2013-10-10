@@ -1,0 +1,33 @@
+{
+  "name": "component-less",
+  "version": "0.1.1",
+  "description": "A plugin to transpile Less files for the component builder.",
+  "keywords": [
+    "component",
+    "less"
+  ],
+  "author": {
+    "name": "Micky Brunetti",
+    "email": "mbrunetti@wizcorp.jp"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Wizcorp/component-less.git"
+  },
+  "dependencies": {
+    "async": "~0.2.6",
+    "less": "1.4.0"
+  },
+  "devDependencies": {
+    "component-builder": "0.8.3"
+  },
+  "main": "index.js",
+  "readme": "# component-less\n\nA plugin to transpile Less files for the component builder.\n\n## Install\n\n$ npm install component-less\n\n## Usage\n  \nAdd your `.less` files to the `styles` array in your `component.json`:\n\n```javascript\n{\n\t\"styles\": [\n\t\t\"base.less\",\n\t\t\"button.css\"\n\t]\n}\n```\n\nUse the plugin during your build process:\n\n```javascript\nvar Builder = require('component-builder');\nvar less = require('component-less');\nvar fs = require('fs');\n\nvar builder = new Builder(__dirname);\n\nbuilder.use(less);\n\nbuilder.build(function (err, res) {\n\tif (err) {\n\t\tthrow err\n\t}\n\n\tfs.writeFileSync('build/build.js', res.require + res.js);\n\n\tif (res.css) {\n\t\tfs.writeFileSync('build/build.css', res.css);\n\t}\n});\n```\n\n## License\nMIT\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/Wizcorp/component-less/issues"
+  },
+  "_id": "component-less@0.1.1",
+  "_from": "component-less@"
+}
