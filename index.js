@@ -32,7 +32,8 @@ module.exports = function (builder, options) {
       });
       return callback();
     }
-    builder.config.styles.forEach(function(file){
+    builder.config.styles.slice().forEach(function(file){
+      console.log(isLess(file) && !~lessImport.indexOf(builder.path(file)), file);
       if(isLess(file) && !~lessImport.indexOf(builder.path(file))){
         lessImport.push(builder.path(file));
       }
