@@ -47,17 +47,15 @@ module.exports = function (builder, options) {
     });
     var parser = new less.Parser(options.env || {});
 		var cssConfig = options.cssConfig || {};
-    setTimeout(function(){
     parser.parse(importsLess, function (error, tree) {
       if (error) {
-				return cb(error);
+				return callback(error);
 			}
 			var css = tree.toCSS(cssConfig);
       
 			builder.addFile('styles', "compiledLess", css);
 		  callback()
     });
-    },1000);
 	});
 };
 
