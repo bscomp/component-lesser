@@ -22,6 +22,7 @@ module.exports = function (builder, options) {
   function depHandler(b){
     b.dep = true;
     b.on('dependency', depHandler);
+    if(!b.config.styles) return;
     b.config.styles.forEach(function(file){
       if(isLess(file) && !~lessImport.indexOf(b.path(file))){
         lessImport.push(b.path(file));
@@ -30,6 +31,7 @@ module.exports = function (builder, options) {
   }
   builder.hook('before styles', function (builder, callback) {
     if(!builder.root) {
+      if(!builder.config.styles) return callback();
       builder.config.styles.forEach(function(file){
         builder.removeFile('styles', file);
       });
