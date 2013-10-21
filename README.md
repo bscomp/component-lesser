@@ -1,6 +1,6 @@
 # component-less
 
-A plugin to transpile Less files for the component builder.
+A plugin to transpile Less files in single context for compy. Allows to use twitter bootstrap.
 
 ## Install
 
