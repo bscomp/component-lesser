@@ -33,7 +33,7 @@ module.exports = function (builder, options) {
     if(!builder.root) {
       if(!builder.config.styles) return callback();
       builder.config.styles.forEach(function(file){
-        builder.removeFile('styles', file);
+        isLess(file) && builder.removeFile('styles', file);
       });
       return callback();
     }
@@ -41,7 +41,7 @@ module.exports = function (builder, options) {
       if(isLess(file) && !~lessImport.indexOf(builder.path(file))){
         lessImport.push(builder.path(file));
       }
-			builder.removeFile('styles', file);
+			isLess(file) && builder.removeFile('styles', file);
     });
     var importsLess = "";
     lessImport.forEach(function(file){
